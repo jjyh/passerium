@@ -1,0 +1,50 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-24T17:32:20-05:00"
+    },
+    {
+      "path": "index.html",
+      "title": "passerium",
+      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-24T17:32:20-05:00"
+    },
+    {
+      "path": "precip.html",
+      "title": "Precipitation Scan",
+      "description": "finding clusters of \"high\" and \"low\" precipitation years suitable for modelling usage\n",
+      "author": [],
+      "date": "December 2020",
+      "contents": "",
+      "last_modified": "2020-12-24T17:32:53-05:00"
+    },
+    {
+      "path": "shivermetimbers.html",
+      "title": "Shiver Me Timbers",
+      "description": "Trialling Tableau to present open source forest monitoring and climate data in dashboard form\n",
+      "author": [
+        {
+          "name": "MECP hackathon team 3",
+          "url": "https://jjyh.github.io/hackathon-OFBN"
+        }
+      ],
+      "contents": "\r\nThe Look\r\nFeatures\r\ninteractive manipulation of the forest Decline Index formula\r\nmapped forest plots and climate stations\r\neco-regional trending References, approach and data pre-processing documentation\r\n\r\n\r\nLessons Learnt (personal opinions)- the platform\r\nDOA outside of specific server environment (not standalone file), very slow to render\r\nno provision for collaboration or version control in this version\r\nneeded heavy wrangling outside of software esp. for GIS\r\nGUI presents a challenge to share/reproduce, requiring animated GIF captures\r\na lot of “tricking” the system required, lack of fine control and unclear parsing (overcome by training?)\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-24T17:32:54-05:00"
+    },
+    {
+      "path": "wysiwyg.html",
+      "title": "WYSIWYG?",
+      "author": [],
+      "contents": "\r\nthen, keen to ken  Source: 第19回東京大学制作展 “WYSIWYG?”\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-24T17:32:56-05:00"
+    }
+  ],
+  "collections": []
+}

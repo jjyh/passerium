@@ -1,0 +1,123 @@
+---
+title: "Precipitation Scan"
+description: |
+  finding clusters of "high" and "low" precipitation years suitable for modelling usage
+date: "December 2020"
+output: 
+  html_document:
+    toc: true 
+    toc_float: true
+---
+# Preparing workspace
+* directory configuration was set also to test out the Projects package shown in UofTcoders Dec. session.  Local working files in "C:/Users/HoJa/Documents/Code/projects/p0001"
+```{r setup, warning=FALSE, message=FALSE}
+library(projects)
+library(here)
+requiredPackages = c('janitor','patchwork','tidyverse','flexdashboard', 'data.table','plotly','readxl', 'rgdal','lubridate', 'rgeos','leaflet','sf','raster','DT','knitr','rmarkdown','skimr')
+for(p in requiredPackages){
+  if(!require(p,character.only = TRUE)) install.packages(p)
+  library(p,character.only = TRUE)
+}
+```
+
+# Data source
+* Buttonville airport data from Environment Canada, pre-processed to certain extent -  see in line comment.  ~30 year span
+```{r load_02_datawork_data, warning=FALSE}
+#load(file = here("/data/02_datawork_objects.RData"))
+file = here("data/en_climate_ON_615HMAK.xlsx")
+#~/Code/projects/p0001/data/en_climate_ON_615HMAK.xlsx <- first 4 columns (Long, lat, station name, climate ID already removed)
+#downloaded from - https://climate.weather.gc.ca/climate_data/daily_data_e.html?hlyRange=1986-06-01%7C2015-05-21&dlyRange=1986-05-01%7C2015-05-20&mlyRange=1986-01-01%7C2015-05-01&StationID=4841&Prov=ON&urlExtension=_e.html&searchType=stnName&optLimit=yearRange&StartYear=1986&EndYear=2007&selRowPerPage=25&Line=0&searchMethod=contains&txtStationName=buttonville&timeframe=2&Day=23&Year=1986&Month=5#
+
+dt_meta<-read_excel(file, sheet='Station', col_names=FALSE)
+dt_precip<-read_excel(file, sheet='Data')
+dt_precip <-dt_precip%>% clean_names()
+str(dt_precip) #check to see R has auto assigned variable types properly, and also there are no obvious dud fields
+```
+
+# Analysis
+* Run annual aggregation:
+```{r analysis}
+#Parameters of interest from scanning dt_precip:
+#total_rain_mm
+#total_snow_cm 
+#total_precip_mm
+#mean_temp_c
+#date_time
+#year month day
+
+#agregate precip by year
+dt_precip_ann<-dt_precip %>% group_by(year) %>% 
+  summarise(annual_precip_mm=sum(total_precip_mm))
+
+skim_without_charts(dt_precip_ann) %>% 
+  dplyr::filter(skim_variable == "annual_precip_mm") 
+
+#arbitrarily set high/low precip years as those out of bounds of mean & 75th percentile
+threshold_lo<-mean(dt_precip_ann$annual_precip_mm)
+threshold_hi<-as.numeric(quantile(dt_precip_ann$annual_precip_mm, 0.75))
+
+dt_precip_ann$flag = case_when(
+  dt_precip_ann$annual_precip_mm<threshold_lo ~"Low",
+  dt_precip_ann$annual_precip_mm>threshold_hi ~"High")
+
+#joining the demarcated annual precips back to main
+dt_precip<-left_join(dt_precip, dt_precip_ann, by='year')
+
+#remove hour & minute from date_time ahead of plotting
+dt_precip$date_time <- as.Date(dt_precip$date_time)
+lims = c(floor_date(min(dt_precip$date_time), unit='year'), ceiling_date(max(dt_precip$date_time), unit='year'))
+
+#plotting
+pl_precip<-ggplot(data=dt_precip, aes(x=date_time, y=total_precip_mm, fill=flag))+
+  geom_bar(stat='identity')+
+  scale_x_date(limits=lims, breaks=("1 year"), 
+               date_labels ="%Y")+
+ scale_fill_discrete(name="Annual Total",labels=c("High, >75th percentile", "Low, <Mean", "Mid., >Mean but <75th "))+
+  theme(axis.text.x=element_text(angle=30),panel.grid.minor = element_blank(),axis.title.x = element_blank()) +   # Remove x-axis label
+     ylab("Daily Precipitation(mm)") # Set y-axis label)+
+  ggtitle(dt_meta[1,2]) #grab station from data file so interchangeable
+
+
+```
+
+# Result & check
+```{r}
+pl_precip
+```
+
+* ggplotly "interactive" version of the same.  The hard label replacement isn't carried through in the legend...  
+```{r}
+ggplotly(pl_precip)
+```
+
+Saving a copy of image for use
+```{r, eval=FALSE}
+ggsave(
+  path=here("figures"),
+  filename="pl_precip_buttonville.png",
+  plot = pl_precip 
+)
+```
+
+* Looking at a bit more details in distribution of daily precipitation of each year using boxplots.  The zeroes skew-er's the examination.  
+```{r}
+
+pl_precip_bx<-ggplot(dt_precip, aes(x=date_time, y=total_precip_mm, group=year)) + 
+  geom_boxplot()+
+  scale_x_date(limits=lims, breaks=("1 year"), 
+               date_labels ="%Y")+
+  theme(axis.text.x=element_text(angle=30), axis.title.x= element_blank()) +  # Remove x-axis label
+     ylab("Daily Precipitation (mm)") # Set y-axis label
+pl_precip_bx
+#useless looking boxplots, probably skewed by zeroes, check summary stats
+skim(group_by(dt_precip, year))%>%
+  dplyr::filter(skim_variable == "total_precip_mm")
+```
+
+# session info
+* From the projects package template.
+```{r saver}
+#save(..., file = here("projects/p0001/data/03_analysis_objects.RData"))
+
+save_session_info(here("progs", "session_info", "analysis"))
+```

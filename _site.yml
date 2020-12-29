@@ -1,0 +1,56 @@
+name: "passerium"
+title: "passerium"
+theme: theme.css
+description: |
+  passerium
+output_dir: "_site"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: wysiwyg.html
+    - text: "WYSIWYG?"
+      menu:
+        - text: "Shiver Me Timbers"
+          href: shivermetimbers.html
+        - text: "Precip Perchance"
+          href: precip.html
+        - text: "Trickle-Trickster"
+        #  href: publish_article.html
+        - text: "Scada-Mata"
+        #  href: publish_website.html
+        - text: "Carto-Credo"
+        #    href: metadata.html
+    - text: "Porifera"
+      menu:
+        - text: "Read-ar"
+          href: https://www.newyorker.com/tech/annals-of-technology/consider-the-sponge
+        - text: "WWWtf"
+          #href: publish_website.html
+        - text: "qin ~~"
+          href: http://silkqin.com/zh02qnpu.htm  
+    - text: "Cache"
+      menu:
+        - text: "Scratch pad"
+          href: publish_article.html
+        - text: "Scrap patch"
+          href: publish_article.html
+        #- text: "Distances"
+          #href: publish_article.html
+        #- text: "\'Character\'-bildungsroman\'"
+          #href: publish_website.html
+        - text: "Rocke-teller"
+          #href: metadata.html
+    - icon: fab fa-github
+      href: https://github.com/jjyh
+
+#By default, all files within the website directory are copied into the output directory (e.g. “_site”) save for the following:#
+#-Files beginning with "." (hidden files).
+#-Files beginning with "_"
+#-Files known to contain R source code (e.g. ".R", ".s", ".Rmd"), R data (e.g. ".RData", ".rds"), or configuration data (e.g. "rsconnect" ,"packrat")).
+#also can be overridden by:
+#include: ["import.R"]
+#exclude: ["docs.txt", "*.csv"]
+
+output: distill::distill_article

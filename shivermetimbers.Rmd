@@ -1,0 +1,38 @@
+---
+title: "Shiver Me Timbers"
+description: |
+  Trialling Tableau to present open source forest monitoring and climate data in dashboard form
+author:
+  - name: MECP hackathon team 3
+    url: https://jjyh.github.io/hackathon-OFBN
+output: distill::distill_article
+---
+# The Look
+* Features
+  + interactive manipulation of the forest Decline Index formula
+  + mapped forest plots and climate stations 
+  + eco-regional trending
+[References, approach and data pre-processing documentation](https://jjyh.github.io/hackathon-OFBN/)
+  
+![Dashboard Tab 1](img/treedash1.png)
+![Dashboard Tab 2](img/treedash2.png)
+![Dashboard Tab 3](img/treedash3.png)
+![Dashboard Tab 4](img/treedash4.png)
+![Dashboard Tab 4](img/treedash5.png)
+  
+* Lessons Learnt (personal opinions)- the platform
+  + DOA outside of specific server environment (not standalone file), very slow to render
+  + no provision for collaboration or version control in this version
+  + needed heavy wrangling outside of software esp. for GIS
+  + GUI presents a challenge to share/reproduce, requiring animated GIF captures
+  + a lot of "tricking" the system required, lack of fine control and unclear parsing (overcome by training?)
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+---
+title: "start"
+author: "JH"
+date: "December 2, 2020"
+output: html_document
+---
+Note: _prefixed.Rmd's will not be rendered (such as this)
+
+
+
+## Distill - Set up
+
+```{r distill}
+#install.packages("distill")
+library(distill)
+library(rmarkdown)
+#follow along here - https://blog.rstudio.com/2020/12/07/distill/
+#and here - https://rstudio.github.io/distill/website.html
+
+#create_website(dir = "my-website", title = "My Website")
+
+
+```
+
+## Distill Articles
+When you use the RStudio Knit command on a Distill article within a website, only that article will be rendered and previewed.  You can also preview a single article from within a website by passing the name of the article’s Rmd file to render_site():
+
+render_site("about.Rmd")
+
+This will build only the specified article (as opposed to all articles in the site). This is our recommended workflow for authoring articles since it offers the fastest turnaround time for previews (since only the article you are working on is rendered).
+
+Render the entire site
+rmarkdown::render_site()
+
+list which files will be removed
+rmarkdown::clean_site(preview = TRUE)
+
+actually remove the files
+rmarkdown::clean_site()
+
+### Theme
+
+```{r pressure, echo=FALSE}
+#You can use the create_theme() function to add a theme CSS file in the current working directory.
+
+distill::create_theme(name = "theme") 
+```
+
+## Blogdown + Hugo FAIL =(
+
+```{r blogdownhugo, eval=FALSE,include=FALSE}
+#follow along source - https://summer-of-blogdown.netlify.app/01/#33
+
+#1x per work session
+library(blogdown)
+#1x per project
+blogdown::new_site(theme = "gcushen/hugo-academic", theme_example = TRUE)
+#it reports that "Hugo has been installed to C:\Users\HoJa\AppData\Roaming\Hugo"
+
+
+# is your version less than the minimum version? see https://themes.gohugo.io/academic/ for requirement
+hugo_version() 
+# if yes, then do this
+#update_hugo()
+
+
+#https://github.com/rstudio/blogdown/issues/495
+#Use serve_site() to preview while developing - By default, the preview will automatically be live when you open a blogdown project
+#Use build_site() if you need to build a website for publishing on a server (when you are not using publishing services that support Hugo)
+#Building a site for local preview and for publishing are not the same. Basically, the main difference is the baseURL you are using: This is because when a website is to be previewed locally, links should refer to local files, whereas when it is deployed, it refers to deployed file. 
+serve_site() # internal; stuff under content folder
+build_site() # creates public folder
+
+stop_server()
+
+#too many issues - looks like the issue is still live - https://stackoverflow.com/questions/65080137/how-to-fix-blogdownserve-site-timeout-error
+#skip hugo blogdown and try something else
+  
+```
