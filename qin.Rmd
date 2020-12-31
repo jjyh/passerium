@@ -1,0 +1,510 @@
+---
+title: "Qin scores & history"
+description: |
+  also a prelude in Python
+output: distill::distill_article
+---
+Objective - read in a webpage, find elements (score/song name, explanatory link) and create a dictionary.  
+The impressive source: http://silkqin.com/zh02qnpu.htm  
+
+# Scrapping source
+1.extracting and renaming files  
+2.Correctly obtaining encoded characters - since the webpage contains Chinese characters, need to ensure they are captured properly 
+  
+Detour INSIDE BASH (not Python)  
+pip install chardet  
+chardetect *html #(after navigating to the correct directory, saving html file)  
+confirmed to be utf-8  
+https://pypi.org/project/chardet/  
+Refer to -- https://stackoverflow.com/questions/31027759/how-to-scrape-traditional-chinese-text-with-beautifulsoup
+
+```{python, eval=FALSE,echo=TRUE}
+import requests
+url = 'http://silkqin.com/zh06hear.htm'
+response = requests.get(url)
+page_content = requests.get(url).content  # returns bytes <- this extra step allows detection for special (e.g. Chinese characters)
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(page_content, 'lxml')
+#check how it looks
+soup.contents
+```
+
+Results in:
+title聽絲弦古琴title  
+meta content="text/html; charset=utf-8" http-equiv="content-type"  
+meta content="聽絲弦古琴" name="description"  meta content="琴、古琴、聽琴、聽古琴、聽絲弦琴、聽絲弦古琴、絲弦、絲絃、絲線、丝弦、絲絃琴、絲弦琴、絲線琴、絲弦古琴、絲絃古琴、絲線古琴、絲桐、唐世璋、John Thompson" name="keywords"  
+ 
+From looking into the text, tre is only a loose pattern - in the location,sually "Anoottion (Rfollowed by Recording 
+F  
+r example, in 南風歌 （聽), the annotation page and recording are adjacent to each other and the naming is consistent.  
+http://silkqin.com/02qnpu/10tgyy/tg01nfg.htm  http://silkqin.com/06hear/myrec/1511/tg01nfg.mp3  
+But sometimes, the naming is not consistent, for example in 墨子悲歌 (聽）  
+http://silkqin.com/02qnpu/32zczz/mozibei.htm http://silkqin.com/06hear/myrec/1589-1609/1609mozibeige.mp3  
+And certain annotations are shorter and exists as excerpts within a page collection; no consistency in file name either, e.g. 太簇意 （聽）  
+http://silkqin.com/02qnpu/07sqmp/sq01dsc.htm#taicouyifn http://silkqin.com/06hear/myrec/1525/xl101tcy102dhy.mp3  
+    here is one consistent pattern though - all annotation pages seem to be under "02qnpu" directory.    
+
+````{python, eval=FALSE,echo=TRUE}
+import re
+from urllib.request import urlretrieve
+from urllib.request import urlopen
+
+html = urlopen('http://silkqin.com')
+baseurl='http://silkqin.com/'
+#The 'a' tag in the html does not have any text directly, but it contains a 'h3' tag that has text. 
+all_links = [link.get("href") for link in soup("a")]
+all_links
+#get rid of none otherwise sub lists generated gives None type error
+#to read on None type - https://stackoverflow.com/questions/3887381/typeerror-nonetype-object-is-not-iterable-in-python
+clean = [x for x in all_links if x is not None]
+# now filter for that directory
+links_htm = [k for k in clean if 'htm' in k and '02qnpu' in k] 
+#and 'htm#' not in k]#and '\#' not in k and '\~' not in k]
+```
+  
+There were 164 scores listed,not 234 that results from checking length of this list.  
+
+This is likely due to the presence of lyrics being separate links, but not filter-out-able since they live in the same '02qnpu' subdirectory  
+e.g. 清商調 （聽）（看中文歌詞） 
+http://silkqin.com/02qnpu/32zczz/daoyi.htm#qsdfn   http://silkqin.com/06hear/myrec/1589-1609/1609qsdge.mp3   http://silkqin.com/02qnpu/32zczz/daoyi.htm#qsdlyr  
+Let's grab them all for now, knowing some are just subsections of pages (e.g. #qsdfn above) and some are lyrics
+
+```{python, eval=FALSE,echo=TRUE}
+#note-- don't reuse counter alink fromprevious= -> cannot force it into an integer as it becomes a list element of thelist in the for loop
+#trying to use it as a counter yields TypeError: list indices must be integers or slices, not str
+counter = 0
+for alink in links_htm:
+    urlretrieve((baseurl + links_htm[counter]), (links_htm[counter].rsplit('/', 1)[-1]))
+    #the split takes all characters after last slash
+    #regex way -- re.sub(r'^.+/([^/]+)$', r'\1', 'dsf/we/sdfl.htm')
+    #more https://stackoverflow.com/questions/7253803/how-to-get-everything-after-last-slash-in-a-url
+    counter += 1
+```
+  
+Result is an error message "NameError: name 'links_htm' is not defined"
+
+What happened?  Checking the directory, there are 210 of these annotation (and lyrics) html files downloaded.  
+Let's collect the downloaded ones (anything with htm) using glob below, and compare against the annotation links list.  
+Since the glob collection has no subdirectory/nesting (besides the # page bookmarks), let's strip those from the links list as well  
+
+```{python, eval=FALSE,echo=TRUE}
+import glob
+downloadedhtmfiles = []
+for file in glob.glob("*.htm"):
+    downloadedhtmfiles.append(file)
+
+links_htm_temp=list(range(0,len(links_htm)))  # there will be error otherwise if list is not intialized, since we don't use append below
+counter = 0
+for alink in links_htm:
+    links_htm_temp[counter] = re.sub(r'^.+/([^/]+)$', r'\1', links_htm[counter])
+    #the split takes all characters after last slash
+    #regex way -- re.sub(r'^.+/([^/]+)$', r'\1', 'dsf/we/sdfl.htm')
+    #more https://stackoverflow.com/questions/7253803/how-to-get-everything-after-last-slash-in-a-url
+    counter += 1
+#links_htm_temp[0]
+
+def Diff(li1, li2): 
+    return (list(set(li1) - set(li2)))  
+print(Diff(links_htm_temp, downloadedhtmfiles))
+```
+
+Output:  
+    ['tg06gjq.htm#lyrchi', 'xl127ysc.htm#jzymusic', 'lh00toc.htm#p5', 'tingqinyin.htm#melody', 'daoyi.htm#qsdfn', 'yqwd.htm', 'xl028yyg.htm#chilyr', 'tg32cjq.htm#1525cjwt', 'xl132src.htm#linzhong', 'jiukuang.htm#chilyr', 'tg36kcyh.htm#music', '03slgj.htm#kzhyy', 'tg01nfg.htm#lyrics', 'hw02qpy.htm', 'xl096yts.htm#lyrics', 'xl127ysc.htm#ysymusic', 'xl054cwy.htm#mjyfn', '27wjctrans.htm#record', '1709qfq.htm#1840muslyr', 'tg28frsg.htm#chilyr', 'daoyi.htm#lyrchi', 'tg10ysc.htm#chilyr', 'xl054cwy.htm#jy', 'qx14wywq.htm', 'tg32cjq.htm#clyrics', 'xl000toc.htm#p16', 'xl021fl.htm#feidianyinfn', 'fm23ygsd.htm#chilyr', 'xl098byd.htm#chilyrfn', 'cx38xsq.htm#lyrics', 'tg24hzd.htm#chilyr', 'zy13ygsd.htm#v1', 'fx33gg.htm#lyricsfn', 'fx42zwy.htm#chilyr', 'sq01dsc.htm#dinghuiyinfn', 'xl046yz.htm#1530', '1709qfq.htm#1709muslyr', 'tg02sqc.htm#lyrics', 'daoyi.htm#qsdlyr', 'tg03xfy.htm#chilyr', 'sj03qjj.htm#chilyr', 'hw15fhts.htm', 'fx40dmyt.htm#chilyr', 'tg09wwq.htm#muslyr', 'tg32cjq.htm#1539cj', 'ty28skj.htm', 'lq12mss.htm', 'fm03qjwd.htm#chilyr', 'fx27wjc.htm#chilyr', 'xl041jyb.htm#qingyeyin', 'qx09lhxx.htm', 'ty28skj.htm#skjmp3', 'ylcx.htm#cgyfn', 'xl041jyb.htm#chilyr', 'yltrans.htm', 'fx32dyq.htm#chilyr', 'sq01dsc.htm#taicouyifn', 'tg16ysc.htm#chilyr', 'ylcx.htm#ylcxmusic', 'xl159qxb.htm#byyfn', 'sq18ghy.htm#daguanyinfn', 'fx45gjx.htm#xllyrfn', 'jiukuang.htm#lyrics', '03slgj.htm#gd', 'fx31lsm.htm#chilyr', 'tg08ksc.htm#lyrics', 'ty6qcby.htm#gy', 'tg07wwc.htm#music', 'xl046yz.htm#chilyr', 'xl007gky.htm#chongheyinfn', 'xl159qxb.htm#qyyfn', 'xl155fqh.htm#chilyr', 'tg25gqlc.htm#chilyr', 'tg35gqf.htm#chilyr', 'sz03olwj.htm']
+    
+# A dictionary to cross-reference
+
+## Playing with Regex and making the first pairing for dict
+
+take all htm, strip out #...
+match blurb.htm"> and </a>
+First let's reset the links list in case of any accidental changes before
+
+```{python, eval=FALSE,echo=TRUE}
+#repeat of above code (in case run from this segment)
+# Find links
+all_links = [link.get("href") for link in soup("a")]
+all_links
+clean = [x for x in all_links if x is not None]
+#links_htm = [k for k in clean if 'htm' in k and '02qnpu' in k and 'htm#' not in k]#and '\#' not in k and '\~' not in k]
+#links_htm = [k for k in links_htm if '02qnpu' in k]
+links_htm = [k for k in clean if 'htm' in k and '02qnpu' in k]
+
+links_htm_clean=links_htm # if I reassign below directly in re.sub, it seems to overwrite the original as well
+links_htm_clean[1] = re.sub(r'.*\/', r'', links_htm_clean[1]) #pat1.*pat2	any number of characters between pat1 and pat2
+links_htm_clean[1] = re.sub(r'\#.*', r'', links_htm_clean[1]) 
+print(links_htm_clean[1]) 
+print(links_htm[3])
+len(links_htm_clean)
+```
+
+Results:  
+yltrans.htm
+02qnpu/03slgj.htm
+234
+
+
+
+```{python, eval=FALSE,echo=TRUE}
+#throwing the tested element into a loop
+# links_htm = [k for k in clean if 'htm' in k and '02qnpu' in k]
+# gets rid of slashes and anything preceding slash
+links_htm_clean=links_htm
+counter=0
+for elem in links_htm_clean:
+    links_htm_clean[counter] = re.sub(r'.*\/', r'', links_htm_clean[counter]) #pat1.*pat2	any number of characters between pat1 and pat2
+#    links_htm_clean[counter] = re.sub(r'\#.*', r'', links_htm_clean[counter]) # works but don't want to remove the # bc sometime that signifies diff song 
+#    print(links_htm_clean[counter]) 
+    counter +=1
+links_htm_clean[1] = re.sub(r'\#.*', r'', links_htm_clean[1]) 
+print(links_htm_clean[1]) 
+print(links_htm[3])
+len(links_htm_clean)
+```
+yltrans.htm
+03slgj.htm
+234
+
+The annotation, recording and song name patterns are generally:
+\<a href="http://silkqin.com/02qnpu/16xltq/xl154lqy.htm">臨邛吟\</a>
+\<a href="http://silkqin.com/06hear/myrec/1525/xl154lqy.mp3">聽\</a>）\</li>
+which means we are looking as song name, the text between *xl154lqy.htm"> & *\</a>
+\<a href="http://silkqin.com/06hear/myrec/1525/xl154lqy.mp3"
+* 
+Let's play with splitting this string, called astring
+
+
+```{python, eval=FALSE,echo=TRUE}
+# Variation 1 - cluster annotation / song name+record link
+astring='<a href="http://silkqin.com/02qnpu/03slgj.htm#kzhyy">開指黃鶯吟</a>（<a href="http://silkqin.com/06hear/myrec/01tangsong/00kzhyy.mp3">聽</a>'
+#m=re.split('(.htm\S+?>)',astring) 
+m=re.split('.htm\S+?>',astring)  #cuts by end of first '>' for a list of two being the ahref annotation link, then song name & recording link
+n=re.sub('(.mp3)\S+','',astring) #cuts everything from the '.mp3' onward to get rid of 聽</a>']
+#\S = a non whitespace chara,
+#+ multipe \S but add ? for as few as possible
+#() keeps the separator within result
+print(m)
+print(n) 
+```
+
+
+'<a href="http://silkqin.com/02qnpu/03slgj', '開指黃鶯吟</a>（<a href="http://silkqin.com/06hear/myrec/01tangsong/00kzhyy.mp3">聽</a>'
+<a href="http://silkqin.com/02qnpu/03slgj.htm#kzhyy">開指黃鶯吟</a>（<a href="http://silkqin.com/06hear/myrec/01tangsong/00kzhyy
+    
+
+
+```{python, eval=FALSE,echo=TRUE}
+# Variation 2 - cluster annotation+song name / record link
+astring='<a href="http://silkqin.com/02qnpu/03slgj.htm#kzhyy">開指黃鶯吟</a>（<a href="http://silkqin.com/06hear/myrec/01tangsong/00kzhyy.mp3">聽</a>'
+#m=re.split('(.htm\S+?>)',astring) 
+m=re.split('</a>（<a href="',astring) 
+n=re.sub('(.mp3)\S+','',astring)
+print(m) #a list of two
+print(n)
+```
+
+'<a href="http://silkqin.com/02qnpu/03slgj.htm#kzhyy">開指黃鶯吟', 'http://silkqin.com/06hear/myrec/01tangsong/00kzhyy.mp3">聽</a>']
+    <a href="http://silkqin.com/02qnpu/03slgj.htm#kzhyy">開指黃鶯吟</a>（<a href="http://silkqin.com/06hear/myrec/01tangsong/00kzhyy
+    
+
+Continuing with variation 2, let's regex out the typical patterns surrounding the song name.  
+
+```{python, eval=FALSE,echo=TRUE}
+# Song Name: 
+o=re.sub(r'.*\/', r'', m[0]) #first extract everything after the last / in the first element -> '03slgj.htm#kzhyy">開指黃鶯吟'
+p=re.split(r'\">', o) # then split by the "> pattern between annotation link and song name ->['03slgj.htm#kzhyy', '開指黃鶯吟']
+p[1] #the second element yields song name
+```
+
+'開指黃鶯吟'
+
+p[0] # annotations
+
+'03slgj.htm#kzhyy'
+
+
+## Build the dictionary
+
+Recall how to set up a dictionary.  Then fit in song name and file name extracted above (and hope the pattern holds)
+
+RecCatalogue={}
+RecCatalogue={p[1]:r.group(0)}
+RecCatalogue
+
+
+```{python, eval=FALSE,echo=TRUE}
+#print the soup as string text for use 
+Ssoup=str(soup)
+print(Ssoup,  file=open('Ssoup.txt', 'w',encoding='utf-8-sig'))
+#for song titles,extract from the mass of text in SSoup file
+#sub-example "<br/><a href="06hear/myrec/1491/zy08ygd.mp3"><b>聽漁歌調</b></a>"
+counter=0
+sep=[i for i in links_rec if i in Ssoup]
+for elem in sep:
+    sep = [i for i in links_rec if i in Ssoup]
+    lsep=len(sep[counter]) #length of the recording file name
+    idx = Ssoup.find(sep[counter]) #note where the recordingfile name is in the Ssoup string
+    _idx=idx-lsep #set starting index back the length of recording file name
+    TitleName[counter]=(Ssoup[_idx:idx-12])
+    TitleName[counter]=TitleName[counter].split(sep=">",maxsplit=1)[1] # cut everything before <b> which precedes title
+    TitleName[counter]=TitleName[counter].split(sep="</",maxsplit=1)[0] # cut everything behind </b> which follows title, keeping first element (Title)
+    counter+=1
+```
+
+Check if we obtained the name  
+TitleName[19]
+    '廣寒秋'
+
+
+```{python, eval=FALSE,echo=TRUE}
+#piecemeal testing looking for explanation htm files which just precede song titles
+teststr="<a href=\"balshblahs<a href=\"http://silkqin.com/02qnpu/32zczz/tingqinyin.htm\">聽琴吟</a>"
+teststr
+idx = Ssoup.find("古風操")
+idx
+```
+5347
+
+```{python, eval=FALSE,echo=TRUE}
+idx_ = Ssoup[idx-180:idx].rfind('<a href=\"') #reverse find looks forward, so set it some number back from index
+print(Ssoup[idx-180+idx_:idx])
+```
+<a href="02qnpu/07sqmp/sq04gfc.htm">
+    
+
+```{python, eval=FALSE,echo=TRUE}
+o=re.sub(r'.*\/', r'', teststr)
+o
+```
+'tingqinyin.htm'
+
+```{python, eval=FALSE,echo=TRUE}
+# trying this in the text string Ssoup 
+idx = Ssoup.find(elem) #note where the file name is in the Ssoup string #'秋風辭'
+idx_ = Ssoup[idx-50:idx].rfind('<a href=\"') 
+idx_=idx-50+idx_
+idx_
+Ssoup[idx_:idx]
+teststr=Ssoup[idx_+9:idx-2]
+teststr=re.sub(r'.*\/', r'', teststr)
+teststr
+```
+
+'ylcx.htm#cgyfn'
+
+Readying for loop by setting up htm list "explan" and cutting out first element which is a blank for some reason
+
+```{python, eval=FALSE,echo=TRUE}
+TitleName=TitleName[1:]
+explan=TitleName
+#alternatively extract title names from previously compiled dictionary:RecCatalogue.keys()
+```
+
+## looping this search
+
+```{python, eval=FALSE,echo=TRUE}
+#example "<br/>"<a href=\"http://silkqin.com/02qnpu/32zczz/tingqinyin.htm\">聽琴吟</a>"
+teststr="blob"
+#remSsoup=Ssoup
+sep = [i for i in TitleName if i in Ssoup]
+counter=0
+for elem in sep:
+    sep = [i for i in TitleName if i in Ssoup]
+    idx = Ssoup.find(elem) #find where songtitle is
+    idx_ = Ssoup[idx-50:idx].rfind('<a href=\"') #then skip 50 characters back and look for match of a href link with highest index (closest to song title)
+    idx_=idx-50+idx_
+    teststr=Ssoup[idx_+9:idx-2] #cut out the a href frames brackets
+    explan[counter]=re.sub(r'.*\/', r'', teststr) # get rid of everything before last slash in htm link
+    counter+=1
+explan
+```
+
+# Outputt explanatory htm's bby song
+
+
+```pyt```{python, eval=FALSE,include=TRUE}
+#HtmCatalogue=dict(zip(TitleName, explan))
+HtmCatalogue
+```
+hSuccessful output: �調幽蘭': 'yltrans.htm#music',
+     '白石道人歌曲古怨': '02gy.htm',
+     '開指黃鶯吟': '03slgj.htm#kzhyy',
+     '遯世操': 'sq01dsc.htm',
+     '華胥引': 'sq03hxy.htm',
+     '古風操': 'sq04gfc.htm',
+     '流水': 'sq06ls.htm',
+     '招隱': 'sq09zy.htm',
+     '酒狂': 'sq10jk.htm',
+     '歌辭': 'jiukuang.htm#chilyr',
+     '獲麟': 'sq11hl.htm',
+     '�etc.`pon
+{python, eval=FALSE,include=TRUE}
+with open('explan.txt', 'w',encoding='utf-8-sig') as f:
+    print(HtmCatalogue, file=f)
+```
+`but text/csv file is difficult to convert, better as json
+```{python eval=FALSE, include=FALSE}
+import json
+data = json.dumps(HtmCatalogue)
+with open("explan.json","w") as f:
+  f.write(data)
+```
+hBackwards test --gg the JSON to dictionay
+HtmCata"logue = json.loads(data)
+HtmCat"a��幽蘭': 'yltrans.htm#music',
+     '白石道人歌曲古怨': '02gy.htm',
+     '開指黃鶯吟': '03slgj.htm#kzhyy',
+     '遯世操': 'sq01dsc.htm',
+     '華胥引': 'sq03hxy.htm',
+     '古風操': 'sq04gfc.htm',
+     '流水': 'sq06ls.htm',
+     '招隱': 'sq09zy.htm',
+     '酒狂': 'sq10jk.htm',
+     '歌辭': 'jiukuang.htm#chilyr',
+     '獲麟': 'sq11hl.htm',
+     '秋月昭茅亭': 'sq13qyzm.htm',
+     '山中思友人': 'sq14szsy.htm',
+     '廣寒遊': 'sq18ghy.htm',
+     '神品商意': 'sq20spsy.htm',
+     '神品古商意': 'sq21spgs.htm',
+     '隱德': 'sq24yd.htm',
+     '廣寒秋': 'sq25ghq.htm',
+     '鶴鳴九皋': 'sq31hmjg.htm',
+     '猗蘭': 'sq32yl.htm',
+     '雉朝飛': 'sq42zzf.htm',
+     '烏夜啼': 'sq43wyt.htm',
+     '泛滄浪': 'sq52fcl.htm',
+     '瀟湘水雲': 'sq53xxsy.htm',
+     '澤畔吟': 'sq56zpy.htm',
+     '離騷': 'sq57ls.htm',
+     '莊周夢蝶': 'sq60zzmd.htm',
+     '楚歌': 'sq61cg.htm',
+     '關雎': 'zy01gj.htm',
+     '陽關三疊': 'zy13ygsd.htm',
+     '調絃品': 'xl001txp.htm',
+     '宮意': 'xl002gy.htm',
+     '修禊吟': 'xl003xxy.htm',
+     '陽春': 'xl004yc.htm',
+     '康衢謠': 'xl005kqy.htm',
+     '冲和吟': 'xl007gky.htm#chongheyinfn',
+     '谷口引': 'xl007gky.htm',
+     '圯橋進履': 'xl008yqj.htm',
+     '達觀吟': 'sq18ghy.htm#daguanyinfn',
+     '流觴': 'xl012ls.htm',
+     '幽蘭': 'a> （包',
+     '商意': 'sq20spsy.htm">',
+     '飛電吟': 'xl021fl.htm#feidianyinfn',
+     '風雷': 'xl021fl.htm',
+     '剡移歌': 'xl028yyg.htm',
+     '懷古吟': 'xl032hgy.htm',
+     '杏壇': 'xl034xt.htm',
+     '清夜吟': 'xl041jyb.htm#qingyeyin',
+     '江月白': 'xl041jyb.htm',
+     '秋風': 'xl043qf.htm',
+     '雪窗夜話': 'xl042xcy.htm',
+     '春江晚眺': 'tg32cjq.htm#1525cjwt',
+     '梅梢月': 'xl048msy.htm',
+     '角意': 'xl054cwy.htm#jy',
+     '蒙棘引': 'xl054cwy.htm#mjyfn',
+     '蒼梧怨': 'xl054cwy.htm',
+     '列女引': 'xl063lny.htm',
+     '採真遊': 'xl064czy.htm',
+     '石上流泉': 'xl075ssl.htm',
+     '洞庭秋思': 'xl076dtq.htm',
+     '醉漁唱晚': 'xl077zyc.htm',
+     '漁歌': 'zy08ygd.mp3"><b',
+     '玉樹臨風': 'xl087ysl.htm',
+     '春曉吟': 'xl089cxy.htm',
+     '鶴舞洞天': 'xl091hwd.htm',
+     '瑤天笙鶴': 'xl096yts.htm',
+     '春思': 'xl097cs.htm',
+     '伯牙弔子期': 'xl098byd.htm',
+     '黃鐘意': 'xl099hzy.htm',
+     '李陵思漢': 'xl100lls.htm',
+     '太簇意': 'sq01dsc.htm#taicouyifn',
+     '夷則意': 'xl113yzy.htm',
+     '處泰吟': 'xl114cty.htm',
+     '遠遊': 'xl115yy.htm',
+     '憶關山': 'xl120ygs.htm',
+     '漢宮秋': 'xl121hgq.htm',
+     '大呂意': 'xl122dly.htm',
+     '崆峒引': 'xl123kty.htm',
+     '崆峒問道': 'xl124ktw.htm',
+     '夾鍾意': 'xl127ysc.htm#jzymusic',
+     '越裳吟': 'xl127ysc.htm#ysymusic',
+     '越裳操': 'xl127ysc.htm',
+     '林鐘意': 'xl132src.htm#linzhong',
+     '神人暢': 'xl132src.htm',
+     '應鐘意': 'xl136yzy.htm',
+     '漢節操': 'xl137hjc.htm',
+     '宋玉悲秋': 'xl148syb.htm',
+     '無媒意': 'xl153wmy.htm',
+     '臨邛吟': 'xl154lqy.htm',
+     '鳳求凰': 'xl155fqh.htm',
+     '孤館遇神': 'xl156ggy.htm',
+     '碧玉意': 'xl159qxb.htm#byyfn',
+     '玉女意': 'xl160yny.htm',
+     '清羽意': 'xl168qyy.htm',
+     '桃源春曉': 'xl169tyc.htm',
+     '一撒金': 'fx07ysj.htm',
+     '文君操': 'fx27wjc.htm',
+     '甲': 'fx27wjcfr.mp3',
+     '陋室銘': 'fx31lsm.htm',
+     '搗衣曲': 'fx32dyq.htm',
+     '歸耕': 'fx33gg.htm',
+     '大明一統': 'fx40dmyt.htm',
+     '醉翁吟': 'fx42zwy.htm',
+     '風雷引': 'fx43fly.htm',
+     '古交行': 'fx45gjx.htm',
+     '春江': 'xl023cj.htm',
+     '慨古': 'fx49kg.htm',
+     '雁過衡陽': 'fx65yghy.htm',
+     '渭濱吟': 'fx67wby.htm',
+     '佩蘭': 'fx73pl.htm',
+     '寄情操': 'fx89jqc.htm',
+     '南風歌': 'tg01nfg.htm',
+     '思親操': 'tg02sqc.htm',
+     '湘妃怨': 'tg03xfy.htm',
+     '關雎曲': 'tg06gjq.htm',
+     '文王操': 'tg07wwc.htm',
+     '文王曲': 'tg09wwq.htm',
+     '亞聖操': 'tg16ysc.htm',
+     '黃鐘調': 'tg24hzd.htm',
+     '歸去來辭': 'tg25gqlc.htm',
+     '風入松歌': 'tg28frsg.htm',
+     '春江曲': 'tg32cjq.htm',
+     '古秋風': 'tg35gqf.htm',
+     '客窗夜話': 'tg36kcyh.htm',
+     '秋江晚釣': 'fm03qjwd.htm',
+     '十八學士登瀛洲': 'xl046yz.htm#1530',
+     '水仙曲': 'wy18sxq.htm',
+     '靜觀吟': 'wy08jgy.htm',
+     '水龍吟': 'yw27sly.htm',
+     '墨子悲歌': 'mozibei.htm',
+     '搗衣': 'fx32dyq.htm',
+     '聽琴吟': 'tingqinyin.htm',
+     '清商調': 'daoyi.htm#qsdfn',
+     '孔聖經': 'sj01ksj.htm',
+     '清靜經': 'sj03qjj.htm',
+     '中秋月': 'sx08zqy.htm',
+     '秋江夜泊': 'sx09qjyb.htm',
+     '良宵引': 'sx15lxy.htm',
+     '雁落平沙': 'ylps.htm',
+     '梅花': 'hw20mh.htm',
+     '秋風辭': 'hw07qfc.htm',
+     '清平樂': 'hw02qpy.htm',
+     '鳳凰臺上憶吹簫': 'hw15fhts.htm',
+     '相思曲': 'cx38xsq.htm#lyrics',
+     '漁樵問答': 'yqwd.htm',
+     '陌上桑': 'lq12mss.htm',
+     '鷗鷺忘機': 'sz03olwj.htm',
+     '色空訣': 'ty28skj.htm',
+     '梧葉舞秋風': 'qx14wywq.htm',
+     '臨河修禊': 'qx09lhxx.htm',
+     '秋風曲': '1709qfq.htm#1709muslyr',
+     '秋風詞': '1709qfq.htm#1840muslyr',
+     '春閨怨': 'ylcx.htm#cgyfn'}
+
+
+
+
+```py

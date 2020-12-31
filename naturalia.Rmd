@@ -1,0 +1,12 @@
+---
+title: "naturalia"
+description: |
+  items created by the earth and items drawn from nature
+output: distill::distill_article
+---
+
+
+![RamlaBay](img\1naturalia.jpg)
+![Olden](img\2naturalia.jpg)
+
+

@@ -1,7 +1,7 @@
 ---
 title: "passerium"
 description: |
-  Welcome to the website. I hope you enjoy it!
+  A motley archive of works and collection of interests
 site: distill::distill_website
 ---
 

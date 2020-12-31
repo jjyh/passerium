@@ -19,29 +19,39 @@ navbar:
         - text: "Trickle-Trickster"
         #  href: publish_article.html
         - text: "Scada-Mata"
-        #  href: publish_website.html
+          href: scadamata.html
         - text: "Carto-Credo"
         #    href: metadata.html
     - text: "Porifera"
       menu:
-        - text: "Read-ar"
-          href: https://www.newyorker.com/tech/annals-of-technology/consider-the-sponge
+        - text: "qin ~~"
+          href: qin.html
         - text: "WWWtf"
           #href: publish_website.html
-        - text: "qin ~~"
-          href: http://silkqin.com/zh02qnpu.htm  
+    - text: "Wunderkammer"
+      menu:
+        - text: "naturalia"
+          href: naturalia.html
+        - text: "artificialia"
+          #href: publish_article.html
+        - text: "mirabilia"
+          #href: publish_article.html unusual natural phenomena
+        - text: "ethnographica"
+          #href: publish_article.html from the wider world
+        - text: "artefacta"
+          href: https://www.hku.hk/f/news/13739/151215_bono4.pdf
+        - text: "scientifica"
+          #href: publish_article.htmltems that brought a great understanding of the universe
     - text: "Cache"
       menu:
         - text: "Scratch pad"
-          href: publish_article.html
+          #href: publish_article.html
         - text: "Scrap patch"
-          href: publish_article.html
+          #href: publish_article.html
         #- text: "Distances"
           #href: publish_article.html
         #- text: "\'Character\'-bildungsroman\'"
           #href: publish_website.html
-        - text: "Rocke-teller"
-          #href: metadata.html
     - icon: fab fa-github
       href: https://github.com/jjyh
 
