@@ -20,8 +20,8 @@ navbar:
         #  href: publish_article.html
         - text: "Scada-Mata"
           href: scadamata.html
-        - text: "Carto-Credo"
-        #    href: metadata.html
+        - text: "Carto-Credo (R,QGIS)"
+          href: cartocredo.html
     - text: "Porifera"
       menu:
         - text: "qin ~~"
@@ -45,9 +45,9 @@ navbar:
     - text: "Cache"
       menu:
         - text: "Scratch pad"
-          #href: publish_article.html
+          href: scratchpad.html
         - text: "Scrap patch"
-          #href: publish_article.html
+          href: scrappatch.html
         #- text: "Distances"
           #href: publish_article.html
         #- text: "\'Character\'-bildungsroman\'"

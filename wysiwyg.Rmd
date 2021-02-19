@@ -2,7 +2,9 @@
 title: "WYSIWYG?"
 output: distill::distill_article
 ---
-Delve
+@ https://github.com/jjyh
+
+
 ![Sourced from: 第19回東京大学制作展 “WYSIWYG?”](img\wysiwyg.jpg)
 Source: [第19回東京大学制作展 “WYSIWYG?”](https://iiiexhibition.com/log/i3e19/)
 ```{r setup, include=FALSE}

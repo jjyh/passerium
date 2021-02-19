@@ -1,0 +1,10 @@
+---
+title: "Scrap patch"
+description: |
+  A temporary berth
+
+output: distill::distill_article
+---
+
+![Carolina](img\scrappatch1.jpg){width=20%}
+![CarolinaAlt](img\scrappatch2.jpg){width=20%}
