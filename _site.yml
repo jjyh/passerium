@@ -22,6 +22,8 @@ navbar:
           href: scadamata.html
         - text: "Carto-Credo (R,QGIS)"
           href: cartocredo.html
+        - text: "Moz-Art"
+          href: mozart.html
     - text: "Porifera"
       menu:
         - text: "qin ~~"
@@ -48,6 +50,8 @@ navbar:
           href: scratchpad.html
         - text: "Scrap patch"
           href: scrappatch.html
+        - text: "Translate"
+          href: kraus_last.html
         #- text: "Distances"
           #href: publish_article.html
         #- text: "\'Character\'-bildungsroman\'"
