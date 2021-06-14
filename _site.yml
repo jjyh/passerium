@@ -12,6 +12,8 @@ navbar:
       href: wysiwyg.html
     - text: "WYSIWYG?"
       menu:
+        - text: "Foodprint"
+          href: foodprint.html
         - text: "Shiver Me Timbers"
           href: shivermetimbers.html
         - text: "Precip Perchance"

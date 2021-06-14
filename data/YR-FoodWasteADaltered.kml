@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>YR-FoodWaste</name>
+	<gx:CascadingStyle kml:id="__managed_style_3CC58FE3F11A6456F831">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=fbc02d&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4.8</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<gx:displayMode>card</gx:displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_2CE17B45A81A6456F831">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=fbc02d&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>3.2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<gx:displayMode>card</gx:displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_1318F285E91A6456F831">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_2CE17B45A81A6456F831</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_3CC58FE3F11A6456F831</styleUrl>
+		</Pair>
+	</StyleMap>
+	<gx:CascadingStyle kml:id="__managed_style_0CBE812C631A6456F831">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=fbc02d&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4.8</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_14F7CF0B8D1A6456F830">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=fbc02d&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>3.2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_04C5651A5F1A6456F830">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_14F7CF0B8D1A6456F830</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_0CBE812C631A6456F831</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="086662D0751A30936200">
+		<name>Earl Turcott Waste Management Facility (ETWMF)</name>
+		<gx:mid>/g/1vxcxd8z</gx:mid>
+		<gx:fid>0x89d4d485550768dd:0xfc21461461b59fda</gx:fid>
+		<LookAt>
+			<longitude>79.34818810000002</longitude>
+			<latitude>43.8344148</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>736.6709870785443</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_04C5651A5F1A6456F830</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>79.34818810000002,43.8344148,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0AA8298F331A3094938B">
+		<name>York Region Waste Management Centre (YRWMC)</name>
+		<gx:mid>/g/11c245j_gc</gx:mid>
+		<gx:fid>0x882acd156627dce3:0x330fc9ddb3c32d2</gx:fid>
+		<LookAt>
+			<longitude>79.40356130000001</longitude>
+			<latitude>44.0777757</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>733.3918996092176</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>79.40356129999999,44.0777757,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0FC6D7972E1A30979934">
+		<name>Green Lane Landfill</name>
+		<gx:mid>/m/05f69j7</gx:mid>
+		<gx:fid>0x882e583013203427:0x40fa11b44e3891ae</gx:fid>
+		<LookAt>
+			<longitude>81.3269195</longitude>
+			<latitude>42.8162498</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>750.2556711961577</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>81.3269195,42.8162498,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="09603E8B2F1A309A1F5A">
+		<name>Waste Management  Twin Creeks Watford Landfill</name>
+		<gx:mid>/g/11fm_j9t_y</gx:mid>
+		<gx:fid>0x882f7345b41aeb19:0xacd522cd88be1772</gx:fid>
+		<LookAt>
+			<longitude>81.8794932</longitude>
+			<latitude>42.9771132</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>748.1239482963322</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>81.8794932,42.9771132,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0DB22E9A0F1A309C58DB">
+		<name>Walker Environmental Niagara Landfill</name>
+		<gx:mid>/g/11gj6bs3ys</gx:mid>
+		<gx:fid>0x89d35ad1bd2630f9:0xd779643a872e9c15</gx:fid>
+		<LookAt>
+			<longitude>79.1641242</longitude>
+			<latitude>43.1294906</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>746.0996036410677</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>79.1641242,43.1294906,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0FE457D7C91A309E007F">
+		<name>Emerald EFW</name>
+		<gx:mid>/g/1q5hrkmsh</gx:mid>
+		<gx:fid>0x882b3e9a5aaf7de5:0x90f531b650cb1dac</gx:fid>
+		<LookAt>
+			<longitude>79.6825908</longitude>
+			<latitude>43.6969907</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>738.5172409451511</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>79.6825908,43.6969907,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0447CE96791A309EBF08">
+		<name>Durham York Energy Centre EFW</name>
+		<gx:mid>/g/11bvtg422q</gx:mid>
+		<gx:fid>0x89d502292bf4f2cd:0x70d315d1f6a94f38</gx:fid>
+		<LookAt>
+			<longitude>78.75301399999999</longitude>
+			<latitude>43.87499499999999</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>736.1250535633804</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>78.75301399999999,43.874995,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0BF6708FCF1A30A0F3C1">
+		<name>Covanta Niagara EFW</name>
+		<gx:mid>/g/1ttdzf8b</gx:mid>
+		<gx:fid>0x89d36830018b4725:0x301a2e4f8d36fa4b</gx:fid>
+		<LookAt>
+			<longitude>79.0071377</longitude>
+			<latitude>43.0834004</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>746.7124349099678</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>79.0071377,43.0834004,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0894A693111A30A1BEB8">
+		<name>Region of Huronia Georgian Bluffs Biodigester (leachate)</name>
+		<gx:fid>0x8829efe3bf26e85d:0x871eeb3666b9f485</gx:fid>
+		<LookAt>
+			<longitude>80.9979603</longitude>
+			<latitude>44.48147789999999</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>727.9254857361508</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>80.9979603,44.48147789999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0CD47938EA1A30A41C23">
+		<name>GFL Environmental Aerobic Compost</name>
+		<gx:mid>/g/11f3xhp4xp</gx:mid>
+		<gx:fid>0x4cce86a41a9500a3:0xaeae4c59558506d3</gx:fid>
+		<LookAt>
+			<longitude>74.99061669999999</longitude>
+			<latitude>45.3053028</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>716.6678564073919</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>74.99061669999999,45.30530280000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="09C0B647A71A30A68442">
+		<name>Covertus Ottawa Aerobic Compost</name>
+		<gx:mid>/g/11c1zp3dhb</gx:mid>
+		<gx:fid>0x4cce0a625d74e8cd:0x5a0fbf8240a572d3</gx:fid>
+		<LookAt>
+			<longitude>75.5537942</longitude>
+			<latitude>45.3015192</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>716.7198700282057</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>75.5537942,45.30151919999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0F42B685631A30A8059E">
+		<name>Covertus London Aerobic Compost</name>
+		<gx:mid>/g/11c1xwx40n</gx:mid>
+		<gx:fid>0x882ef47df0cd3281:0x37222c6bf5f0975b</gx:fid>
+		<LookAt>
+			<longitude>81.20816139999999</longitude>
+			<latitude>42.9087665</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>749.0303361296052</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>81.20816139999999,42.9087665,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0C82272E821A6457BB38">
+		<name>Cornerstone Essex Seacliff Energy</name>
+		<gx:mid>/g/12cp87s7w</gx:mid>
+		<gx:fid>0x883ac0610286f763:0xb071637296e072f5</gx:fid>
+		<LookAt>
+			<longitude>82.5634536</longitude>
+			<latitude>42.028553</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>760.6137482845224</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_04C5651A5F1A6456F830</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>82.5634536,42.028553,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="00C61C0AB01A645A26C8">
+		<name>Cornerstone Elmira Bio-En</name>
+		<gx:mid>/g/11g8nphkxt</gx:mid>
+		<gx:fid>0x882bee69517ef295:0xcec6c717fce42cb6</gx:fid>
+		<LookAt>
+			<longitude>80.56094499999999</longitude>
+			<latitude>43.57772440000001</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>740.1163619000625</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_1318F285E91A6456F831</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>80.56094499999999,43.5777244,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>

@@ -1,0 +1,23 @@
+in R
+setwd("C:/Users/HoJa/Documents/R/passerium")
+rmarkdown::render_site()
+
+[git bash here in the passerium folder]
+
+git add .
+[lots of warning from carriage line... warning: LF will be replaced by CRLF in progs/session_info/analysis/session_info_20201224_17?32?51_EST.txt.
+The file will have its original line endings in your working directory]
+
+git commit -m "upload anew with Distill version"
+
+git push
+
+[files are then in github]
+
+drag _site folder to netlify
+
+-----------
+can then connect to Github to Netlify
+Just make sure you are connected to the right repository and you are good to go. But before your deployment becomes successful, you need to set the right environment variable for Netlify to recognize the file structure.
+
+To do this, go to your Netlify dashboard, go to Settings ? Build & Deploy ? Environment and set the following environment variables.

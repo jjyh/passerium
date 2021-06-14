@@ -1,5 +1,5 @@
 ---
-title: "Science to Materiality Workshop Exercise"
+title: " Mozfest 2021 Science Materiality Workshop held by Convergence Initiative; Notes & Thoughts"
 output:
   flexdashboard::flex_dashboard:
     storyboard: true
@@ -15,21 +15,11 @@ library(DiagrammeR)
 ### the metaphor / art concept, *a created tangible, evocative expression of the scientific abstract* << {data-commentary-width=500}  
 ![recording, 2021.03.18](img/exoplanet.mp4){height="300"}
 ```{r, include=FALSE, eval=FALSE}
-tags$video(
-    src = "http://www.hochmuth.com/mp3/Vivaldi_Sonata_eminor_.mp3",
-    #"exoplanet.mp4",
-    type = "video/mp4",
-    width = 240, height = 180,
-    controls = "controls"
-)
 #https://stackoverflow.com/questions/59789276/r-flexdashboard-how-to-embed-a-video-with-a-reactive-value-in-file-path
-
 #<img style="float: bottom;" src="score.jpg">  
 # that works too but won't align and goes over 
 #![](score.jpg){height=10%} 
 ```
-
-
 *** 
 the resultant art concept:  
 + a fugue^ punctuated by periodic brief pauses.  respite from the ceaseless tides, shade from the heat or momentum of the continuous sound-field *emissions from the star, interrupted by the orbiting exoplant  passing through its line of contact with us*   
@@ -43,8 +33,6 @@ the resultant art concept:
 ![](img/score.jpg){height="160"} 
   
 ### << **3** materalizing: *from tangibility, sensations, feelings associated with the simile* {data-commentary-width=400}
-
-
 ```{r}
 DiagrammeR::grViz("digraph {
 graph [rankdir = LR,layout = neato]
@@ -60,12 +48,9 @@ node [shape = plaintext,
 ***
 Giving substance to the chosen simile (which may itself be as abstract and intangible as the original scientific concept!).  The guiding questions (e.g. how does it feel in hand?  What is the feeling associated with the emotion?) provided by the workshop were well posed, simple and directly useful in shaping the final concept. 
 
-
 ### << **2**  similes mind-mapping: *facilitating divergence, layered distance from the abstract technical concept* {data-commentary-width=400}
-
 ```{r}
 DiagrammeR::grViz("digraph {
-
 graph [layout = neato]
 node [shape = plaintext,
         fontname = Helvetica,
@@ -102,12 +87,10 @@ shadow -> {inkspot treeshade}
 A stimulating and difficult thought activity (within the time constraint of the workshop as well), to try to distance and diverge away from the scientific topic through similes (and trying to reach even further extensions of them).  
 Agree with the sentiment expressed in the workshop, that the more & in-depth one knows of one's domain, the harder it is explain what one knows to others.   Why philosophers' own texts oft make for such dense reading perhaps!  
 
-
 ### << **1**  de-jargonize: *condense and simplify the scientific finding, or, plane the abstract plain* {data-commentary-width=400}
 
 ```{r}
 DiagrammeR::grViz("digraph {
-
 graph [rankdir = LR]
 node [shape = plaintext,
         fontname = Helvetica]
@@ -124,17 +107,15 @@ Through answering a series of questions, render the scientific abstract into fam
   
 But this abstract seemed quite plainly written as-is, with not much jargon.  Not much done at this stage (I had also mixed up the background information about star "sound" emissions as being the main topic rather than the actual Guillon et al. paper)  
   
-In fact, science in general is fairly simple to understand, given it is grounded in logical reason.  What are really incomprehensible are human hearts, political "science", government finances, and business machinations...  
+In fact, science in general is fairly simple to understand, given it is grounded in logical reason.  What are really incomprehensible are human hearts, political science(?), government finances, and business machinations...  
 
-### << **0** origin: *the scientific article abstract to be "expressed" or rendered comprehensible and relate-able* {data-commentary-width=400}
+### << **0** origin: *the scientific article abstract to be "expressed" or rendered comprehensible* {data-commentary-width=400}
 [Subject 1 - Music of the Spheres, **Convergence Intiative Mozfest 2021 workshop**](https://www.convergenceinitiative.org/convergence-scimat-mozilla)  
 Guillon et al - Temperate Earth-sized planets transiting a nearby ultracool dwarf star. Nature 533, page 222-227 (2016)  
-
-*Star-like objects with effective temperatures of less than 2,700 kelvin are referred to as ‘ultracool dwarfs’. This heterogeneous group includes stars of extremely low mass as well as brown dwarfs (substellar objects not massive enough to sustain hydrogen fusion), and represents about 15 percent of the population of astronomical objects near the Sun. Core-accretion theory predicts that, given the small masses of these ultracool dwarfs, and the small sizes of their protoplanetary disks, there should be a large but hitherto undetected population of terrestrial planets orbiting them—ranging from metal-rich Mercury-sized planets to more hospitable volatile-rich Earth-sized planets. Here we report observations of three short-period Earth-sized planets transiting an ultracool dwarf star only 12 parsecs away. The inner two planets receive four times and two times the irradiation of Earth, respectively, placing them close to the inner edge of the habitable zone of the star. Our data suggest that 11 orbits remain possible for the third planet, the most likely resulting in irradiation significantly less than that received by Earth. The infrared brightness of the host star, combined with its Jupiter-like size, offers the possibility of thoroughly characterizing the components of this nearby planetary system.*   
+*Star-like objects with effective temperatures of less than 2,700 k are referred to as ultracool dwarfs. This heterogeneous group includes stars of extremely low mass as well as brown dwarfs (substellar objects not massive enough to sustain hydrogen fusion), and represents about 15 percent of the population of astronomical objects near the Sun. Core-accretion theory predicts that, given the small masses of these ultracool dwarfs, and the small sizes of their protoplanetary disks, there should be a large but hitherto undetected population of terrestrial planets orbiting them, ranging from metal-rich Mercury-sized planets to more hospitable volatile-rich Earth-sized planets. Here we report observations of three short-period Earth-sized planets transiting an ultracool dwarf star only 12 parsecs away. The inner two planets receive four times and two times the irradiation of Earth, respectively, placing them close to the inner edge of the habitable zone of the star. Our data suggest that 11 orbits remain possible for the third planet, the most likely resulting in irradiation significantly less than that received by Earth. The infrared brightness of the host star, combined with its Jupiter-like size, offers the possibility of thoroughly characterizing the components of this nearby planetary system.*   
 
 **Background Information**  
 Do stars make sounds? (https://earthsky.org/space/do-stars-make-sounds) 
-\...
 
 *** 
 ![convergence-workshop-mozfest](img/workshop.png){width=50%}  
