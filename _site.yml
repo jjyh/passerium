@@ -12,6 +12,9 @@ navbar:
       href: wysiwyg.html
     - text: "WYSIWYG?"
       menu:
+        - text: "Portfolio Overview"
+          href: wysiwyg.html
+        - text: "--------------"
         - text: "Foodprint"
           href: foodprint.html
         - text: "Shiver Me Timbers"

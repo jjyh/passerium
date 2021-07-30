@@ -1,0 +1,44 @@
+---
+title: "WYSIWYG"
+description: |
+  Data Processing, Analysis & Visualization Portfolio
+author:
+  - name: JH
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+| Title        | Description (status)           | Language  |
+| ------------- |:-------------:| -----:|
+| [Foodprint](https://passerium.netlify.app/foodprint.html)      | right-aligned | $1600 |
+| Shiver Me Timbers     | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+
+        - text: "Foodprint"
+          href: foodprint.html
+        - text: "Shiver Me Timbers"
+          href: shivermetimbers.html
+        - text: "Precip Perchance"
+          href: precip.html
+        - text: "Trickle-Trickster"
+        #  href: publish_article.html
+        - text: "Scada-Mata"
+          href: scadamata.html
+        - text: "Carto-Credo (R,QGIS)"
+          href: cartocredo.html
+        - text: "Moz-Art"
+          href: mozart.html
+    - text: "Porifera"
+      menu:
+        - text: "qin ~~"
+          href: qin.html
+        - text: "WWWtf"
+
+
+
+

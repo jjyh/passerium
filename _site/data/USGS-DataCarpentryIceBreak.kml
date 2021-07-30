@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>USGS-DataCarpentryIceBreak</name>
+	<gx:CascadingStyle kml:id="__managed_style_22D95F3AAD1C1EC9D911">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=fbc02d&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_16DC6B75CF1C1EC9D911">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=fbc02d&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_0240C83AD81C1EC9D911">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_16DC6B75CF1C1EC9D911</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_22D95F3AAD1C1EC9D911</styleUrl>
+		</Pair>
+	</StyleMap>
+	<gx:CascadingStyle kml:id="__managed_style_2A2C4FD46E1C1EC521F0">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=fbc02d&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<gx:displayMode>card</gx:displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_1E9A109B621C1EC521F0">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=fbc02d&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<gx:displayMode>card</gx:displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_01755F83011C1EC521F0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_1E9A109B621C1EC521F0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_2A2C4FD46E1C1EC521F0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="0C18F2DAA21C1EC521E7">
+		<name>Molly of Denali</name>
+		<gx:mid>/m/0hjy</gx:mid>
+		<gx:fid>0x5400df9cc0aec01b:0xbcdb5e27a98adb35</gx:fid>
+		<LookAt>
+			<longitude>-158.8158324</longitude>
+			<latitude>61.3080755</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>5714374.66996272</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_01755F83011C1EC521F0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-149.4936733,64.20084129999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="014B5B63E41C1EC5B449">
+		<name>Candide</name>
+		<gx:mid>/m/04llb</gx:mid>
+		<gx:fid>0xd19331a61e4f33b:0x400ebbde49036d0</gx:fid>
+		<LookAt>
+			<longitude>-9.160203249999999</longitude>
+			<latitude>38.74362659999999</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>36263.20718485961</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_01755F83011C1EC521F0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-9.1393366,38.7222524,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="025AB2C21D1C1EC73F46">
+		<name>Endeavor &amp; Ted Lasso, Great British Baking Show</name>
+		<gx:mid>/m/034cm</gx:mid>
+		<gx:fid>0x48623f576e11cf01:0xb31929c178ebc05</gx:fid>
+		<LookAt>
+			<longitude>-2.2358783</longitude>
+			<latitude>54.31549745</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>1735741.905596495</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_01755F83011C1EC521F0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-2.4290148,53.8337367,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="03254CFED51C1EC7C098">
+		<name>Left/Right Game Podcast </name>
+		<gx:mid>/m/0vmt</gx:mid>
+		<gx:fid>0x872b08ebcb4c186b:0x423927b17fc1cd71</gx:fid>
+		<LookAt>
+			<longitude>-111.9295252</longitude>
+			<latitude>34.1684146</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>1230998.634510157</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_01755F83011C1EC521F0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-111.0937311,34.0489281,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="01D3FCB1931C1EC86EFF">
+		<name>Wanderers</name>
+		<gx:mid>/m/059_c</gx:mid>
+		<gx:fid>0x80990aa1f8deb471:0xcf47038aaafc95b3</gx:fid>
+		<LookAt>
+			<longitude>-117.0230604</longitude>
+			<latitude>38.50203200000001</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>2328677.010772539</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_01755F83011C1EC521F0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-116.419389,38.8026097,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0527C50A441C1EC91906">
+		<name>Jaws</name>
+		<gx:mid>/m/029jpy</gx:mid>
+		<gx:fid>0x4cb2391901ee773f:0x541ee66d0cbba5ed</gx:fid>
+		<LookAt>
+			<longitude>-70.306596</longitude>
+			<latitude>44.20538799999999</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>2133056.82270807</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_01755F83011C1EC521F0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-70.82265409999999,43.9653889,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="00ADF90B061C1EC99EDE">
+		<name>Inherent Vice</name>
+		<gx:mid>/m/01n7q</gx:mid>
+		<gx:fid>0x808fb9fe5f285e3d:0x8b5109a227086f55</gx:fid>
+		<LookAt>
+			<longitude>-119.306607</longitude>
+			<latitude>37.26917445</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>2367994.779491993</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0240C83AD81C1EC9D911</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-119.4179324,36.778261,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0F1BE7786A1C1ECA7025">
+		<name>100 Foot Wave</name>
+		<gx:mid>/m/043fcs</gx:mid>
+		<gx:fid>0xd18a8232f6ad417:0x3d2d871af42106f</gx:fid>
+		<LookAt>
+			<longitude>-9.028468650000001</longitude>
+			<latitude>39.61227330000001</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>17908.95715303874</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_01755F83011C1EC521F0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-9.0700991,39.6012147,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0F2E67541F1C1ECAE889">
+		<name>Caste</name>
+		<gx:mid>/m/09c7w0</gx:mid>
+		<gx:fid>0x54eab584e432360b:0x1c3bb99243deb742</gx:fid>
+		<LookAt>
+			<longitude>-95.66500000000001</longitude>
+			<latitude>37.59999999999999</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>9430204.437731374</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_01755F83011C1EC521F0</styleUrl>
+		<Point>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-95.71289099999998,37.09024,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>

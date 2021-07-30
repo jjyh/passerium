@@ -1,0 +1,46 @@
+---
+title: 'USGS Data Carpentry workshop Icebreaker '
+output:
+  html_document:
+    df_print: paged
+    self_contained: yes
+---
+
+
+Description is a factor - referring back to question from first day, if it were kept as character, it wouldn't lend itself to being plotted as category (book, film etc.) and thus being colour-sorted, and used for legend, in the subsequent plot below
+
+```{r}
+library(leaflet)
+library(sf)
+library(here)
+library(widgetframe)
+
+#Quick-plotting the locations from icebreaker on GoogleEarth to get a kml for input into R 
+locs<- st_read(here("data/USGS-DataCarpentryIceBreak.kml"))
+
+locs$Description<-c("TV", "Book","TV", "Podcast", "Film", "Film","Film","Film","Book")
+locs$Description<-as.factor(locs$Description)
+
+locs<-st_transform(locs, crs=4326)
+
+factorpal <- colorFactor(topo.colors(4), locs$Description)
+```
+
+Mapping it:
+```{r}
+m<-leaflet(locs) %>% 
+  addProviderTiles(providers$CartoDB.Positron) %>% 
+  addCircleMarkers(label = ~as.character(Name), color=~factorpal(Description),  labelOptions = labelOptions(noHide = T)) %>% 
+  addLegend("topright", pal = factorpal, values = locs$Description)
+
+#the resultant map object
+m
+#frameWidget(m)
+
+```
+
+
+```{r}
+
+```
+
