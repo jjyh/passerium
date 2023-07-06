@@ -1,0 +1,106 @@
+---
+title: "Glycol Glider - facility data flow training / re-mapping"
+author: "JH"
+date: "August 29, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(networkD3)
+library(tidyr)
+```
+
+## Project Schedule
+June – July 2019: continue building data entry spreadsheets (lower priority). Undertake data entry for 2019‐2020 season using new spreadsheet set and comparison against existing spreadsheets.  
+August 2019: Building reporting spreadsheets based on new data entry sheets.  Verification of July 
+monthly/weekly totals.  Demonstrate usage of BV data portal to the two primary operators.  Establish protocol & scripts for handling external lab (BV) data and train lead operator on process.  
+September 2019: Building Access database, establishing procedure & scripts to clean formatting from data entry spreadsheets and automate upload process.  Verification of August totals. Training two primary operators on usage  ‐ entry taken over by operators.   
+October 2019:  Training all operators on usage.  Verification of September totals   Build queries within Access database.  Create alternate SQL database route (in case Access runs out of space in the future).  Complete documentation & hand‐over. 
+November 2019 (planned): Repeat monthly reporting exercise with operators & verification of October totals.  
+
+# Training / Manual Explanatory Illustrations
+
+## Data dependency by spreadsheet
+The master or template set is retained in the facility’s desktop as well as in the facility’s network drive.  
+The entry spreadsheets are organized to mimic the old system, however with most spreadsheets changed as tabs‐within‐spreadsheets to increase speed and minimize link breakages.  Data connections are set up across spreadsheets to minimize manual copy‐and‐paste and transcription errors.  The precedence of opened spreadsheets is critical to proper data retrieval, with dependencies shown below: 
+
+
+```{r,echo=FALSE}
+links<-read.csv(text = "source,target,value
+ChemInput,InlandShip,2.00
+ChemInput,OperRecord,4.00
+ChemInput,Reporting,2.00
+ExtLab,Reporting,1.00
+OperRecord,ExtLab,1.00
+OperRecord,Reporting,2.00
+InlandShip,Reporting,1.00
+DailyRecord,(not-reported),0.5
+ValveLogs,(not-reported),0.5
+SludgeDisposal,(not-reported),0.5
+WasteManifest,(not-reported),0.5
+FracTanks,(not-reported),0.5", header=TRUE)
+
+# build a nodes data frame using all unique names of nodes found in your links
+# source *and* target vectors
+nodes <- data.frame(name = unique(c(as.character(links$source), as.character(links$target))))
+
+# set the source and target values in your links data frame to the index of the
+# node that they refer to in the nodes data frame (0-indexed becauuse it's 
+# used by JavaScript)
+links$source <- match(links$source, nodes$name) - 1
+links$target <- match(links$target, nodes$name) - 1
+
+# Add a 'group' column to the nodes data frame:
+nodes$group <- as.factor(c("db","ndb","db","db","db","ndb","db","db","ndb","ndb","ndb"))
+ 
+# Give a color for each group:
+my_color <- 'd3.scaleOrdinal() .domain(["db", "ndb"]) .range(["#69b3a2", "steelblue"])'
+ 
+# plot it
+library(networkD3)
+sankeyNetwork(Links = links, Nodes = nodes, Source = "source", Target = "target", Value = "value", NodeID = "name",
+              fontSize=20, sinksRight=FALSE, colourScale=my_color,NodeGroup="group")
+```
+*green = needs to be uploaded to database  *  
+*blue = keep archived for records but not included in database*  
+_drag nodes as needed to clarify linkage view_
+
+## Database raw data table sources
+Detailed procedures (Appendix E) were provided to the lead operator.  
+*In‐House Data  
+In‐house data entry was structured to minimize transformation required to upload to the database.   Automation of cleaning was preferred due to the sheer volume of tabs the operator would otherwise have to manually repeat the process through.   
+Following the routine monthly totals verification, the procedure instructs the lead operator to create a copy of the checked data entry files into the network drive to avoid accidentally overwriting earlier data from the season, as the for‐upload data will be trimmed to only dates not already within the database.  
+There are two Excel macros to be run – i) a date trimmer, wherein the operator selects the start and end date of the data to be uploaded (e.g. starting from where the last upload ended) and ii) a csv convertor, which cycles through and flattens the necessary tabs of the data entry spreadsheet to csv files.  
+The operator may then check the staged csv files again (the macros do not catch or eliminate stray columns or rows which may have been inadvertently introduced during data entry) in the staging folder.  The Access database then has an import macro to collect all the csv files present in the staging folder.  
+The flow of entry spreadsheets & (selected) tabs to database table is illustrated in Figure 2.     In general, spreadsheets/tabs purposed for summary reporting (e.g. monthly reports and sheet reconciliation) spreadsheet and calculators (e.g. the pump guides) are kept out of the database, as the values can be calculated from raw data within the database.  This is aimed to conserve space in the database.  
+
+
+```{r, echo=FALSE}
+dblinks<-read.csv('data/glycolglider-dbsankeynew.csv', header=TRUE)
+
+# build a nodes data frame using all unique names of nodes found in your links
+# source *and* target vectors
+nodes <- data.frame(name = unique(c(as.character(dblinks$ExcelTable), as.character(dblinks$DBTable))))
+
+# set the source and target values in your links data frame to the index of the
+# node that they refer to in the nodes data frame (0-indexed becauuse it's 
+# used by JavaScript)
+dblinks$ExcelTable <- match(dblinks$ExcelTable, nodes$name) - 1
+dblinks$DBTable <- match(dblinks$DBTable, nodes$name) - 1
+
+# Add a 'group' column to the nodes data frame:
+#nodes$group <- as.factor(c("db","ndb","db","db","db","ndb","db","db","ndb","ndb","ndb"))
+ 
+# Give a color for each group:
+my_color <- 'd3.scaleOrdinal() .domain(["db", "ndb"]) .range(["#69b3a2", "steelblue"])'
+ 
+# plot it
+library(networkD3)
+sankeyNetwork(Links = dblinks, Nodes = nodes, Source = "ExcelTable", Target = "DBTable", Value = "Value", NodeID = "name",
+              nodePadding=15, height=960, width=1000, fontSize=15, sinksRight=FALSE)#, colourScale=my_color,NodeGroup="group")
+```
+*Spreadsheet -> Tab/Table Name -> Database Table -> Joined/Queried Database Table *  
+*gray = not uploaded to database, retained in local archive  *  
+_drag nodes as needed to clarify linkage view_

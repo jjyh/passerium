@@ -318,14 +318,14 @@ for elem in sep:
 explan
 ```
 
-# Outputt explanatory htm's bby song
+# Output explanatory htm's bby song
 
 
 ```pyt```{python, eval=FALSE,include=TRUE}
 #HtmCatalogue=dict(zip(TitleName, explan))
 HtmCatalogue
 ```
-hSuccessful output: �調幽蘭': 'yltrans.htm#music',
+hSuccessful output: ?調幽蘭': 'yltrans.htm#music',
      '白石道人歌曲古怨': '02gy.htm',
      '開指黃鶯吟': '03slgj.htm#kzhyy',
      '遯世操': 'sq01dsc.htm',
@@ -336,7 +336,7 @@ hSuccessful output: �調幽蘭': 'yltrans.htm#music',
      '酒狂': 'sq10jk.htm',
      '歌辭': 'jiukuang.htm#chilyr',
      '獲麟': 'sq11hl.htm',
-     '�etc.`pon
+     '?etc.`pon
 {python, eval=FALSE,include=TRUE}
 with open('explan.txt', 'w',encoding='utf-8-sig') as f:
     print(HtmCatalogue, file=f)
@@ -350,7 +350,7 @@ with open("explan.json","w") as f:
 ```
 hBackwards test --gg the JSON to dictionay
 HtmCata"logue = json.loads(data)
-HtmCat"a��幽蘭': 'yltrans.htm#music',
+HtmCat"a??幽蘭': 'yltrans.htm#music',
      '白石道人歌曲古怨': '02gy.htm',
      '開指黃鶯吟': '03slgj.htm#kzhyy',
      '遯世操': 'sq01dsc.htm',

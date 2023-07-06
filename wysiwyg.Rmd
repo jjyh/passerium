@@ -1,7 +1,7 @@
 ---
 title: "WYSIWYG?"
 description: |
-  Data Processing, Analysis & Visualization Portfolio
+  Instructional Data Processing, Analysis & Visualization Portfolio
 author:
   - name: JH
 output: distill::distill_article
@@ -11,11 +11,13 @@ output: distill::distill_article
 | Link        | Description (status)           | Language  |
 | ------------- |:-------------:| -----:|
 | [Foodprint](https://passerium.netlify.app/foodprint.html)| *anonymized* Regional organic and organic-in-residuals waste disposal routes & associated GHG emissions.  Workflow & results geospatial visualization  (stage completion; in further development as part of ongoing study)| R |
-| [SCADAmata](https://passerium.netlify.app/scadamata.html) | *anonymized* treatment plant operational & chemistry data dashboard (completed in different forms for three remedial & solids waste facilities)|R, Excel macros, SQL|
+| [SCADAmata](https://passerium.netlify.app/scadamata.html) | *anonymized* treatment plant operational, chemistry surface water data dashboard (completed in different forms for three remedial & solids waste facilities)|R, Excel macros, SQL|
 | [Shiver Me Timbers](https://passerium.netlify.app/shivermetimbers.html) | Environmental Data Hackathon - visually explain regional Forest Decline Index, view forest health & climate trend; authored by cross-discipline/ministry team (complete - in further development by primary author| Tableau |
 | [Precip Perchance](https://passerium.netlify.app/precip.html) | prototype automating annual precipitation analysis (looking for multi-year low's/high's) at a locale, for conservation authority usage (complete)|R |
 | [Carto-credo](https://passerium.netlify.app/cartocredo.html) | comparative side-by-side R vs. QGIS workflow to ingest, perform buffer analysis, & visualize waste management sites geospatial data (draft completion; to be expanded)|R, QGIS|
-| [Icebreaker Map](https://passerium.netlify.app/usgs-datacarpentryicebreak) | on-the-fly geospatial demo using icebreaker responses from USGS Data Carpentry workshop as instructor (completed)|R, GoogleEarth|
+| [Icebreaker Map](https://passerium.netlify.app/usgs-datacarpentryicebreak) | on-the-fly geospatial demo using icebreaker responses from [USGS Data Carpentry workshop, Geospatial with R](https://annajiat.github.io/2021-07-27-usgs-online/) as instructor (completed)|R, GoogleEarth|
+| [Workshop Markdown Prep](https://passerium.netlify.app/ipynb.html) | preparatory checks demonstrating quick use of Markdown in Jupyter Notebook shared with attendees from [USGS Data Carpentry workshop, Python, Shell & Git](https://jjyh.github.io/2021-10-26-usgs-online/) as instructor (scheduled)|Markdown|
+| [Glycol Gliders](https://passerium.netlify.app/ipynb.html) | flowcharting excerpt from data plan documentation and "mental maps" reference print-outs for operator training, as instructor and project lead |R|
 | [Moz-Art](https://passerium.netlify.app/mozart.html) | Dashboarding & flowcharting process to result from Science to Materiality workshop held by Convergence Initiative (neuroscience & arts cross-disciplinary group, Concordia University) (completed)|R|
 | [Qin](https://passerium.netlify.app/qin.html) | Automating textual extraction, files-scrapping & organization from a website on history & music of the Chinese ancient zither (functional code completed)|Python on Jupyter Notebook|
 

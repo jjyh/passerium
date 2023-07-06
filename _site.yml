@@ -54,9 +54,9 @@ navbar:
         - text: "Scratch pad"
           href: scratchpad.html
         - text: "Scrap patch"
-          href: scrappatch.html
+          #href: scrappatch.html
         - text: "Translate"
-          href: kraus_last.html
+          #href: kraus_last.html
         #- text: "Distances"
           #href: publish_article.html
         #- text: "\'Character\'-bildungsroman\'"

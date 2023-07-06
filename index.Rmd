@@ -1,14 +1,11 @@
 ---
 title: "passerium"
 description: |
-  A motley archive
+  
 site: distill::distill_website
 ---
-
-*Somehow, then, and without going mad, we must learn from these madmen to reconcile fanaticism with serenity. [...] For nothing can be accomplished without fanaticism, and without serenity nothing can be enjoyed. Perfection of form or increase of knowledge, pursuit of fame or service to the community, love of God or god of Love, [...] we must select the Illusion which appeals to our temperament, and embrace it*  
+$\color{white}{\text{Somehow, then, and without going mad, we must learn from these madmen to reconcile fanaticism with serenity. [...] For nothing can be accomplished without fanaticism, and without serenity nothing can be enjoyed. Perfection of form or increase of knowledge, pursuit of fame or service to the community, love of God or god of Love, [...] we must select the Illusion which appeals to our temperament, and embrace it -- *A Word Cycle by Palinurus* (Cyril Connolly, 1944) }}$
   
--- *A Word Cycle by Palinurus* (Cyril Connolly, 1944)
-
 
 
 ```{r setup, include=FALSE}

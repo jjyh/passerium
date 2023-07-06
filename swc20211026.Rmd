@@ -1,0 +1,43 @@
+---
+title: "USGS-SWC Workshop 2021.10.26 - Additional preparatory notes"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+    self_contained: yes
+date: "Updated 2021.10.20"
+---
+**Workshop home page: https://jjyh.github.io/2021-10-26-usgs-online/**  
+
+**Collaborative Notes: Etherpad link to be added **
+
+-----------------------------
+
+
+## How to check if the pre-workshop installations were completed? (in Windows:)
+
+### Git 
+
+click start menu and look for "Git"; "Git Bash" should be within
+![](img\swc-GitSMChk.png)
+  
+or  
+Right-click anywhere (usually where you want to run shell, to save changing directory location) in File Explorer or desktop and select "Git Bash Here"
+  
+![](img\swc-GitRCChk.png)
+Bash shell running:  
+![](img\swc-GitChk.png)
+
+### Python
+Per 2:30 of the video from the carpentries, you can check that Python is present on the computer by typing below after the $ sign (confirm that the version is 3.x not 2.x)
+
+```{bash, eval=FALSE}
+$ python --version
+```
+
+For the workshop, also check that Anaconda is present, it should be on your start menu.  Jupyter Notebook, installed as part of Anaconda, is needed for the code-along (though you have another IDE you are already familiar with for coding Python) and integrated with the note-taking Markdown format for use as a sort of lab notebook.  
+We will spend the first portion of the workshop starting up + orientating Jupyter. 
+
+![](img\swc-PyAnaconda.gif)
+
+
