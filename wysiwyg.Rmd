@@ -10,17 +10,19 @@ output: distill::distill_article
 
 | Link        | Description (status)           | Language  |
 | ------------- |:-------------:| -----:|
+| [PT PG](https://www.labstats.ca/test-report)| (authentication required) On-demand generated Proficiency Test report for Canadian & U.S. wastewater surveillance, with plots & tables piped directly from project base code and exportable as html, pdf.  Program workflow described in [lightning talk](https://jjyh.github.io/wspTalk.github.io/) | R, Quarto |
+| [Lost in London](https://jjyh.github.io/london/)| travel-plans - crosstalk to generate & highlight leaflet map with locations of interest, based on opening times and priority  (completed; maybe add a checklist/afterthoughts)| R|
+| [Terzetto](https://interlabs.shinyapps.io/terzetto)| Platform to accept upload, process & "live"-visualize data from three parties (public health, university, government agency) in a half-year pilot project parallel-sampling wastewater for flu and SARS-CoV-2, using googlesheets4 to access secured backend | R, flexdashboard|
 | [Foodprint](https://passerium.netlify.app/foodprint.html)| *anonymized* Regional organic and organic-in-residuals waste disposal routes & associated GHG emissions.  Workflow & results geospatial visualization  (stage completion; in further development as part of ongoing study)| R |
 | [SCADAmata](https://passerium.netlify.app/scadamata.html) | *anonymized* treatment plant operational, chemistry surface water data dashboard (completed in different forms for three remedial & solids waste facilities)|R, Excel macros, SQL|
 | [Shiver Me Timbers](https://passerium.netlify.app/shivermetimbers.html) | Environmental Data Hackathon - visually explain regional Forest Decline Index, view forest health & climate trend; authored by cross-discipline/ministry team (complete - in further development by primary author| Tableau |
 | [Precip Perchance](https://passerium.netlify.app/precip.html) | prototype automating annual precipitation analysis (looking for multi-year low's/high's) at a locale, for conservation authority usage (complete)|R |
 | [Carto-credo](https://passerium.netlify.app/cartocredo.html) | comparative side-by-side R vs. QGIS workflow to ingest, perform buffer analysis, & visualize waste management sites geospatial data (draft completion; to be expanded)|R, QGIS|
 | [Icebreaker Map](https://passerium.netlify.app/usgs-datacarpentryicebreak) | on-the-fly geospatial demo using icebreaker responses from [USGS Data Carpentry workshop, Geospatial with R](https://annajiat.github.io/2021-07-27-usgs-online/) as instructor (completed)|R, GoogleEarth|
-| [Workshop Markdown Prep](https://passerium.netlify.app/ipynb.html) | preparatory checks demonstrating quick use of Markdown in Jupyter Notebook shared with attendees from [USGS Data Carpentry workshop, Python, Shell & Git](https://jjyh.github.io/2021-10-26-usgs-online/) as instructor (scheduled)|Markdown|
-| [Glycol Gliders](https://passerium.netlify.app/ipynb.html) | flowcharting excerpt from data plan documentation and "mental maps" reference print-outs for operator training, as instructor and project lead |R|
+| [Workshop Markdown Prep] | preparatory checks demonstrating quick use of Markdown in Jupyter Notebook shared with attendees from [USGS Data Carpentry workshop, Python, Shell & Git](https://jjyh.github.io/2021-10-26-usgs-online/) as instructor (scheduled)|Markdown|
 | [Moz-Art](https://passerium.netlify.app/mozart.html) | Dashboarding & flowcharting process to result from Science to Materiality workshop held by Convergence Initiative (neuroscience & arts cross-disciplinary group, Concordia University) (completed)|R|
 | [Qin](https://passerium.netlify.app/qin.html) | Automating textual extraction, files-scrapping & organization from a website on history & music of the Chinese ancient zither (functional code completed)|Python on Jupyter Notebook|
-
+| [Glycol Gliders] | flowcharting excerpt from data plan documentation and "mental maps" reference print-outs for operator training, as instructor and project lead |R|
 
 
 @ https://github.com/jjyh
